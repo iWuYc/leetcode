@@ -1,8 +1,10 @@
-package com.iwuyc.leetcode.easy.p001_p010;
+package com.iwuyc.leetcode.p001_p010;
 
 import java.util.Arrays;
 
 import org.junit.Test;
+
+import com.iwuyc.leetcode.p001_p010.P001;
 
 public class P001Test {
 

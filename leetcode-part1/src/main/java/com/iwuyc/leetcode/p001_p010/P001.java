@@ -1,4 +1,4 @@
-package com.iwuyc.leetcode.easy.p001_p010;
+package com.iwuyc.leetcode.p001_p010;
 
 import java.util.HashSet;
 
