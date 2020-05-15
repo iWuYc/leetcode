@@ -65,7 +65,7 @@ public class P004_betterTest {
     }
 
     private void findMedianSortedArrays(int[] nums1, int[] nums2) {
-        System.out.println(new P004_better().findMedianSortedArrays(nums1, nums2));
+        System.out.println(new P004_better.Solution().findMedianSortedArrays(nums1, nums2));
     }
 
 }

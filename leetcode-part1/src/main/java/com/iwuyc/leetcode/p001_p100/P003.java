@@ -19,35 +19,37 @@ import java.util.HashMap;
  *
  * @author iWuYc
  */
-public class P003 {
-    public int lengthOfLongestSubstring(String s) {
-        int longestLength = 0;
-        HashMap<Character, Integer> charsWithoutRepeating = new HashMap<>(16);
-        int begin = 0;
-        char[] removeKeys = null;
-        int location = 0;
-        char currentChar = 0;
-        for (int i = 0; i < s.length(); i++) {
-            currentChar = s.charAt(i);
-            if (charsWithoutRepeating.containsKey(currentChar)) {
-                if (longestLength < charsWithoutRepeating.size()) {
-                    longestLength = charsWithoutRepeating.size();
+public interface P003 {
+    class Solution {
+        public int lengthOfLongestSubstring(String s) {
+            int longestLength = 0;
+            HashMap<Character, Integer> charsWithoutRepeating = new HashMap<>(16);
+            int begin = 0;
+            char[] removeKeys;
+            int location;
+            char currentChar;
+            for (int i = 0; i < s.length(); i++) {
+                currentChar = s.charAt(i);
+                if (charsWithoutRepeating.containsKey(currentChar)) {
+                    if (longestLength < charsWithoutRepeating.size()) {
+                        longestLength = charsWithoutRepeating.size();
+                    }
+                    location = charsWithoutRepeating.get(currentChar);
+                    removeKeys = new char[location - begin + 1];
+                    s.getChars(begin, location + 1, removeKeys, 0);
+                    removeAll(charsWithoutRepeating, removeKeys);
+                    begin = location + 1;
                 }
-                location = charsWithoutRepeating.get(currentChar);
-                removeKeys = new char[location - begin + 1];
-                s.getChars(begin, location + 1, removeKeys, 0);
-                removeAll(charsWithoutRepeating, removeKeys);
-                begin = location + 1;
+                charsWithoutRepeating.put(currentChar, i);
             }
-            charsWithoutRepeating.put(currentChar, i);
+
+            return Math.max(longestLength, charsWithoutRepeating.size());
         }
 
-        return longestLength >= charsWithoutRepeating.size() ? longestLength : charsWithoutRepeating.size();
-    }
-
-    private void removeAll(HashMap<Character, Integer> charsWithoutRepeating, char[] removeKeys) {
-        for (char c : removeKeys) {
-            charsWithoutRepeating.remove(c);
+        private void removeAll(HashMap<Character, Integer> charsWithoutRepeating, char[] removeKeys) {
+            for (char c : removeKeys) {
+                charsWithoutRepeating.remove(c);
+            }
         }
     }
 }

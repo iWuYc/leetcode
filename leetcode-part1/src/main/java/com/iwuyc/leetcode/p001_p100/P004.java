@@ -26,56 +26,57 @@ package com.iwuyc.leetcode.p001_p100;
  *
  * @author iWuYc
  */
-public class P004 {
-    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        int mergeLength = nums1.length + nums2.length;
-        int[] locations = location(mergeLength);
+public interface P004 {
+    class Solution {
+        public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+            int mergeLength = nums1.length + nums2.length;
+            int[] locations = location(mergeLength);
 
-        int cursorA = 0;
-        int cursorB = 0;
-        int currentVal = 0;
+            int cursorA = 0;
+            int cursorB = 0;
+            int currentVal;
 
-        double sum = 0;
-        int cursor = 0;
-        for (int location : locations) {
+            double sum = 0;
+            int cursor = 0;
+            for (int location : locations) {
 
-            for (; cursor < mergeLength; cursor++) {
-                if (nums1.length <= cursorA) {
-                    currentVal = nums2[cursorB];
-                    cursorB++;
-
-                } else if (nums2.length <= cursorB) {
-                    currentVal = nums1[cursorA];
-                    cursorA++;
-
-                } else {
-                    if (nums1[cursorA] < nums2[cursorB]) {
-                        currentVal = nums1[cursorA];
-                        cursorA++;
-                    } else {
+                for (; cursor < mergeLength; cursor++) {
+                    if (nums1.length <= cursorA) {
                         currentVal = nums2[cursorB];
                         cursorB++;
+
+                    } else if (nums2.length <= cursorB) {
+                        currentVal = nums1[cursorA];
+                        cursorA++;
+
+                    } else {
+                        if (nums1[cursorA] < nums2[cursorB]) {
+                            currentVal = nums1[cursorA];
+                            cursorA++;
+                        } else {
+                            currentVal = nums2[cursorB];
+                            cursorB++;
+                        }
+                    }
+                    if (location == cursor) {
+                        sum += currentVal;
+                        cursor++;
+                        break;
                     }
                 }
-                if (location == cursor) {
-                    sum += currentVal;
-                    cursor++;
-                    break;
-                }
             }
+            return sum / locations.length;
         }
-        return sum / locations.length;
-    }
 
-    private int[] location(int mergeLength) {
-        int[] result;
-        int location = mergeLength / 2;
-        if (mergeLength % 2 == 0) {
-            result = new int[]{location - 1, location};
-        } else {
-            result = new int[]{location};
+        private int[] location(int mergeLength) {
+            int[] result;
+            int location = mergeLength / 2;
+            if (mergeLength % 2 == 0) {
+                result = new int[]{location - 1, location};
+            } else {
+                result = new int[]{location};
+            }
+            return result;
         }
-        return result;
     }
-
 }

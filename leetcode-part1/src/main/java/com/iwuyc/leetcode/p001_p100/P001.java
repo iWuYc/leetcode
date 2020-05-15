@@ -1,6 +1,7 @@
 package com.iwuyc.leetcode.p001_p100;
 
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 1.Two
@@ -16,29 +17,22 @@ import java.util.HashSet;
  *
  * @author iWuYc
  */
-public class P001 {
-
-    public int[] twoSum(int[] nums, int target) {
-        HashSet<Integer> numsSet = new HashSet<>(nums.length);
-        int subResult = 0;
-        int[] result = new int[2];
-
-        for (int i = 0; i < nums.length; i++) {
-            subResult = target - nums[i];
-            if (numsSet.contains(subResult)) {
-                result[1] = i;
-
-                for (int j = 0; j < i; j++) {
-                    if (subResult == nums[j]) {
-                        result[0] = j;
-                        break;
-                    }
+public interface P001 {
+    class Solution {
+        public int[] twoSum(int[] nums, int target) {
+            Map<Integer, Integer> numberIndex = new HashMap<>();
+            int resultNum;
+            int num;
+            for (int i = 0; i < nums.length; i++) {
+                num = nums[i];
+                resultNum = target - num;
+                if (numberIndex.containsKey(resultNum)) {
+                    return new int[]{numberIndex.get(resultNum), i};
+                } else {
+                    numberIndex.put(num, i);
                 }
-                break;
             }
-            numsSet.add(nums[i]);
+            return null;
         }
-
-        return result;
     }
 }

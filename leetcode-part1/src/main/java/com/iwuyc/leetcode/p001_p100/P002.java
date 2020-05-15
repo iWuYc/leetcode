@@ -14,37 +14,41 @@ package com.iwuyc.leetcode.p001_p100;
  *
  * @author iWuYc
  */
-public class P002 {
+public interface P002 {
+    class Solution {
+        public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode result = new ListNode(0);
-        ListNode currentResultNode = result;
-
-        do {
-            currentResultNode.val = l1.val + l2.val + currentResultNode.val;
-            boolean isCarry = currentResultNode.val > 9;
-            if (isCarry) {
-                currentResultNode.val -= 10;
-                currentResultNode.next = new ListNode(1);
-            } else {
-                currentResultNode.next = new ListNode(0);
-            }
-
-            if (l1.next == null && l2.next == null) {
-                if (currentResultNode.next.val == 0) {
-                    currentResultNode.next = null;
+            int addResult = l1.val + l2.val;
+            int carry = addResult / 10;
+            ListNode result = new ListNode(addResult % 10);
+            ListNode currentResult = result;
+            ListNode currentL1 = l1.next;
+            ListNode currentL2 = l2.next;
+            while (currentL1 != null || currentL2 != null) {
+                if (currentL1 != null && currentL2 != null) {
+                    addResult = currentL1.val + currentL2.val + carry;
+                    currentL1 = currentL1.next;
+                    currentL2 = currentL2.next;
+                } else if (currentL1 != null) {
+                    addResult = currentL1.val + carry;
+                    currentL1 = currentL1.next;
+                } else {
+                    addResult = currentL2.val + carry;
+                    currentL2 = currentL2.next;
                 }
-                break;
-            }
-            l1 = l1.next == null ? new ListNode(0) : l1.next;
-            l2 = l2.next == null ? new ListNode(0) : l2.next;
-            currentResultNode = currentResultNode.next;
-        } while (true);
 
-        return result;
+                carry = addResult / 10;
+                currentResult.next = new ListNode(addResult % 10);
+                currentResult = currentResult.next;
+            }
+            if (carry > 0) {
+                currentResult.next = new ListNode(carry);
+            }
+            return result;
+        }
     }
 
-    public static class ListNode {
+    class ListNode {
         int val;
         ListNode next;
 
