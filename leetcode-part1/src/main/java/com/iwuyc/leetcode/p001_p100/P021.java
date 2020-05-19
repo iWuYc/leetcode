@@ -14,8 +14,8 @@ public interface P021 {
             }
             ListNode resultCursor = result;
             do {
-                do {
-                    if (resultCursor.val > cursor.val) {
+                while (resultCursor.next != null) {
+                    if (resultCursor.next.val > cursor.val) {
                         ListNode tmpNext = resultCursor.next;
                         resultCursor.next = cursor;
                         resultCursor = resultCursor.next;
@@ -24,7 +24,7 @@ public interface P021 {
                         break;
                     }
                     resultCursor = resultCursor.next;
-                } while (resultCursor != null);
+                }
                 cursor = cursor.next;
             } while (cursor != null);
 
