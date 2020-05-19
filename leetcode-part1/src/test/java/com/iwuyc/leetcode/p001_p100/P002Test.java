@@ -1,6 +1,5 @@
 package com.iwuyc.leetcode.p001_p100;
 
-import com.iwuyc.leetcode.p001_p100.P002.ListNode;
 import org.junit.Test;
 
 /**
@@ -16,11 +15,11 @@ public class P002Test {
     @Test
     public void test() {
         P002.Solution solution = new P002.Solution();
-        ListNode l1 = new P002.ListNode(2);
+        ListNode l1 = new ListNode(2);
         l1.next = new ListNode(4);
         l1.next.next = new ListNode(3);
 
-        ListNode l2 = new P002.ListNode(5);
+        ListNode l2 = new ListNode(5);
         l2.next = new ListNode(6);
         l2.next.next = new ListNode(4);
 
@@ -41,9 +40,9 @@ public class P002Test {
     @Test
     public void test1() {
         P002.Solution solution = new P002.Solution();
-        ListNode l1 = new P002.ListNode(5);
+        ListNode l1 = new ListNode(5);
 
-        ListNode l2 = new P002.ListNode(5);
+        ListNode l2 = new ListNode(5);
 
         ListNode result = solution.addTwoNumbers(l1, l2);
         while (result != null) {
@@ -62,10 +61,10 @@ public class P002Test {
     @Test
     public void test2() {
         P002.Solution solution = new P002.Solution();
-        ListNode l1 = new P002.ListNode(1);
-        l1.next = new P002.ListNode(8);
+        ListNode l1 = new ListNode(1);
+        l1.next = new ListNode(8);
 
-        ListNode l2 = new P002.ListNode(0);
+        ListNode l2 = new ListNode(0);
 
         ListNode result = solution.addTwoNumbers(l1, l2);
         while (result != null) {
@@ -85,10 +84,10 @@ public class P002Test {
     public void test3() {
         P002.Solution solution = new P002.Solution();
 
-        ListNode l1 = new P002.ListNode(0);
+        ListNode l1 = new ListNode(0);
 
-        ListNode l2 = new P002.ListNode(1);
-        l2.next = new P002.ListNode(8);
+        ListNode l2 = new ListNode(1);
+        l2.next = new ListNode(8);
 
         ListNode result = solution.addTwoNumbers(l1, l2);
         while (result != null) {
@@ -108,15 +107,15 @@ public class P002Test {
     public void test4() {
         P002.Solution solution = new P002.Solution();
 
-        ListNode l1 = new P002.ListNode(1);
+        ListNode l1 = new ListNode(1);
         l1.next = new ListNode(4);
         l1.next.next = new ListNode(8);
         l1.next.next.next = new ListNode(9);
 
-        ListNode l2 = new P002.ListNode(1);
-        l2.next = new P002.ListNode(8);
-        l2.next.next = new P002.ListNode(7);
-        l2.next.next.next = new P002.ListNode(0);
+        ListNode l2 = new ListNode(1);
+        l2.next = new ListNode(8);
+        l2.next.next = new ListNode(7);
+        l2.next.next.next = new ListNode(0);
 
         ListNode result = solution.addTwoNumbers(l1, l2);
         while (result != null) {
