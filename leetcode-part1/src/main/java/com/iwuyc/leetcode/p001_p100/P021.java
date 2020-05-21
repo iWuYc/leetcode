@@ -3,30 +3,34 @@ package com.iwuyc.leetcode.p001_p100;
 public interface P021 {
     class Solution {
         public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-            ListNode result;
-            ListNode cursor;
-            if (l1.val < l2.val) {
-                result = l1;
-                cursor = l2;
-            } else {
-                result = l2;
-                cursor = l1;
+            if (l1 == null) {
+                return l2;
             }
-            ListNode resultCursor = result;
+            if (l2 == null) {
+                return l1;
+            }
+            ListNode big;
+            ListNode little;
+            if (l1.val < l2.val) {
+                little = l1;
+                big = l2;
+            } else {
+                little = l2;
+                big = l1;
+            }
+            ListNode result = little;
             do {
-                while (resultCursor.next != null) {
-                    if (resultCursor.next.val > cursor.val) {
-                        ListNode tmpNext = resultCursor.next;
-                        resultCursor.next = cursor;
-                        resultCursor = resultCursor.next;
-                        resultCursor.next = tmpNext;
-                        cursor = cursor.next;
+                while (true) {
+                    if (little.next == null || little.next.val > big.val) {
+                        ListNode tmp = little.next;
+                        little.next = big;
+                        big = big.next;
+                        little.next.next = tmp;
                         break;
                     }
-                    resultCursor = resultCursor.next;
+                    little = little.next;
                 }
-                cursor = cursor.next;
-            } while (cursor != null);
+            } while (big != null);
 
             return result;
         }

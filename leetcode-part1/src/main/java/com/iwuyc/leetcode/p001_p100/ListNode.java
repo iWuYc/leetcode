@@ -8,6 +8,19 @@ public class ListNode {
         val = x;
     }
 
+    public static ListNode create(int... vals) {
+        if (vals == null || vals.length == 0) {
+            return null;
+        }
+        ListNode result = new ListNode(vals[0]);
+        ListNode cursor = result;
+        for (int i = 1; i < vals.length; i++) {
+            cursor.next = new ListNode(vals[i]);
+            cursor = cursor.next;
+        }
+        return result;
+    }
+
     @Override
     public String toString() {
         StringBuilder strBuilder = new StringBuilder(String.valueOf(val));

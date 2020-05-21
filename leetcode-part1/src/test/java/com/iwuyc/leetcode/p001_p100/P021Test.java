@@ -5,21 +5,19 @@ import org.junit.Test;
 public class P021Test {
     @Test
     public void name() {
-        ListNode l10 = new ListNode(1);
-        ListNode l11 = new ListNode(2);
-        ListNode l12 = new ListNode(4);
-        l10.next = l11;
-        l11.next = l12;
+        ListNode l10 = ListNode.create(1, 2, 4);
         System.out.println(l10.toString());
 
-        ListNode l20 = new ListNode(1);
-        ListNode l21 = new ListNode(3);
-        ListNode l22 = new ListNode(4);
-        l20.next = l21;
-        l21.next = l22;
+        ListNode l20 = ListNode.create(1, 3, 4);
         System.out.println(l20.toString());
 
         ListNode listNode = new P021.Solution().mergeTwoLists(l10, l20);
-        System.out.println(listNode.toString());
+        System.out.println("result:" + listNode.toString());
+
+        ListNode l11 = ListNode.create(5);
+        ListNode l21 = ListNode.create(1, 2, 4);
+
+        ListNode listNode1 = new P021.Solution().mergeTwoLists(l11, l21);
+        System.out.println("result:" + listNode1.toString());
     }
 }
