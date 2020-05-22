@@ -32,29 +32,42 @@ public interface P025 {
                 }
             }
             if (!stack.isEmpty()) {
-                ListNode newList = stack.pop();
-                ListNode newListCursor = newList;
+                ListNode newListCursor = stack.pop();
                 while (!stack.isEmpty()) {
-                    newListCursor.next = stack.pop();
-                    newListCursor = newListCursor.next;
+                    stack.peek().next = newListCursor;
+                    newListCursor = stack.pop();
                 }
                 if (result == null) {
-                    result = newList;
+                    result = newListCursor;
                 } else {
-                    lastCursor.next = newList;
+                    lastCursor.next = newListCursor;
+                }
+            }
+            return result;
+        }
+    }
+    class Solution2 {
+        public ListNode reverseKGroup(ListNode head, int k) {
+            if (head == null || k <= 0) {
+                return head;
+            }
+            ListNode result = null;
+            while (head != null){
+                ListNode newListNode = head;
+                for (int i = 1; i < k; i++) {
+                    if (head.next == null){
+                        // 不足k个，翻转成原来的顺序
+                        newListNode = reverse(newListNode);
+                        break;
+                    }
                 }
             }
             return result;
         }
 
-        private ListNode newList(Stack<ListNode> listNodes) {
-            ListNode newList = listNodes.pop();
-            ListNode newListCursor = newList;
-            while (!listNodes.isEmpty()) {
-                newListCursor.next = listNodes.pop();
-                newListCursor = newListCursor.next;
-            }
-            return newList;
+        private ListNode reverse(ListNode newListNode) {
+
+            return newListNode;
         }
     }
 }
