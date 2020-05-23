@@ -3,9 +3,12 @@ package com.iwuyc.leetcode.p001_p100;
 import java.util.Stack;
 
 public interface P025 {
+    /**
+     * 栈的方式：stack
+     */
     class Solution {
         public ListNode reverseKGroup(ListNode head, int k) {
-            if (head == null || k <= 0) {
+            if (head == null || k < 2) {
                 return head;
             }
             Stack<ListNode> stack = new Stack<>();
@@ -47,6 +50,9 @@ public interface P025 {
         }
     }
 
+    /**
+     * ListNode
+     */
     class Solution2 {
         public ListNode reverseKGroup(ListNode head, int k) {
             if (head == null || k < 2) {
@@ -92,5 +98,40 @@ public interface P025 {
             return result;
         }
 
+    }
+
+    /**
+     * 数组的方式：ListNode[]
+     */
+    class Solution3 {
+        public ListNode reverseKGroup(ListNode head, int k) {
+            if (head == null || k < 2) {
+                return head;
+            }
+            ListNode[] listNodes = new ListNode[k];
+            int counter = 0;
+            final int maxIndex = k - 1;
+            ListNode result = new ListNode(-1);
+            ListNode resultCursor = result;
+            while (head != null) {
+                listNodes[counter] = head;
+                head = head.next;
+                listNodes[counter].next = null;
+                if (counter == maxIndex) {
+                    for (; counter >= 0; counter--) {
+                        resultCursor.next = listNodes[counter];
+                        resultCursor = resultCursor.next;
+                    }
+                }
+                counter++;
+            }
+            if (counter != 0) {
+                for (int i = 0; i < counter; i++) {
+                    resultCursor.next = listNodes[i];
+                    resultCursor = resultCursor.next;
+                }
+            }
+            return result.next;
+        }
     }
 }
