@@ -21,8 +21,7 @@ public class ListNode {
         return result;
     }
 
-    @Override
-    public String toString() {
+    public String printList() {
         StringBuilder strBuilder = new StringBuilder(String.valueOf(val));
         ListNode cursor = next;
         while (cursor != null) {
@@ -32,4 +31,8 @@ public class ListNode {
         return strBuilder.toString();
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(this.val);
+    }
 }

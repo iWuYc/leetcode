@@ -46,28 +46,51 @@ public interface P025 {
             return result;
         }
     }
+
     class Solution2 {
         public ListNode reverseKGroup(ListNode head, int k) {
-            if (head == null || k <= 0) {
+            if (head == null || k < 2) {
                 return head;
             }
             ListNode result = null;
-            while (head != null){
-                ListNode newListNode = head;
-                for (int i = 1; i < k; i++) {
-                    if (head.next == null){
-                        // 不足k个，翻转成原来的顺序
-                        newListNode = reverse(newListNode);
+            ListNode resultLast = null;
+            while (head != null) {
+                int count = 1;
+                ListNode newList = head;
+                ListNode newListLast = newList;
+                head = head.next;
+                newList.next = null;
+                boolean enough = false;
+                while (head != null) {
+                    ListNode tmp = head.next;
+                    head.next = newList;
+                    newList = head;
+                    head = tmp;
+                    count++;
+                    if (count >= k) {
+                        enough = true;
                         break;
                     }
                 }
+                if (!enough) {
+                    ListNode newListCursor = newList.next;
+                    newList.next = null;
+                    while (newListCursor != null) {
+                        ListNode tmp = newListCursor.next;
+                        newListCursor.next = newList;
+                        newList = newListCursor;
+                        newListCursor = tmp;
+                    }
+                }
+                if (result == null) {
+                    result = newList;
+                } else {
+                    resultLast.next = newList;
+                }
+                resultLast = newListLast;
             }
             return result;
         }
 
-        private ListNode reverse(ListNode newListNode) {
-
-            return newListNode;
-        }
     }
 }
