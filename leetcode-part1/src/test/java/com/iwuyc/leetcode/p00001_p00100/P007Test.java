@@ -1,8 +1,6 @@
-package com.iwuyc.leetcode.p001_p100;
+package com.iwuyc.leetcode.p00001_p00100;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class P007Test {
     @Test

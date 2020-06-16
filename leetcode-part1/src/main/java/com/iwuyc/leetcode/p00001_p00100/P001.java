@@ -1,4 +1,4 @@
-package com.iwuyc.leetcode.p001_p100;
+package com.iwuyc.leetcode.p00001_p00100;
 
 import java.util.HashMap;
 import java.util.Map;

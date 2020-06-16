@@ -1,6 +1,4 @@
-package com.iwuyc.leetcode.p001_p100;
-
-import java.util.Stack;
+package com.iwuyc.leetcode.p00001_p00100;
 
 public interface P007 {
     class Solution {
